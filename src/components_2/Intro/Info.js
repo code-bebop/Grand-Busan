@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 import { useSelector } from "react-redux";
 
-import InfoCounter from "./InfoCounter";
 import InfoRoom from "./InfoRoom";
-import Button from "../Common/Button";
 import PopUp from "./PopUp";
+import Button from "../Common/Button";
 
 const InfoBlock = styled.button`
   background-color: white;
@@ -31,15 +30,18 @@ const InfoBlock = styled.button`
   }
 `;
 
-const Info = () => {
+const Info = ({ isPopUp, setIsPopUp }) => {
   const rooms = useSelector((state) => state.rooms);
   let adultSum = 0;
   let childSum = 0;
-  const [isPopUp, setIsPopUp] = useState(false);
+  let roomSum = 0;
 
   rooms.forEach((room) => {
     adultSum += room.adult;
     childSum += room.child;
+    if (room.adult) {
+      roomSum += 1;
+    }
   });
 
   return (
@@ -47,7 +49,7 @@ const Info = () => {
       <InfoBlock onClick={() => setIsPopUp(!isPopUp)}>
         <dl>
           <dt>Room</dt>
-          <dd>1</dd>
+          <dd>{roomSum}</dd>
           <dt>Adult</dt>
           <dd>{adultSum}</dd>
           <dt>Children</dt>

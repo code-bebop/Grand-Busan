@@ -1,20 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import Button from "../Common/Button";
 
-const InfoCounter = ({ children, number, onIncrease, roomNum }) => {
+const InfoCounterBlock = styled.div`
+  border-bottom: 1px solid #6d3e3e;
+  height: 60px;
+  & + & {
+    margin-left: 20px;
+  }
+  span {
+    margin: 0 50px;
+    font-size: 18px;
+  }
+`;
+
+const InfoCounter = ({ children, number, onIncrease, onDecrease, roomNum }) => {
   return (
-    <div>
-      {/* <Button color={"white"} onClick={() => onDecrease(children)}>
-        -
-      </Button> */}
-      <span>{children}</span>
-      <span>{number}</span>
+    <InfoCounterBlock>
+      <Button color={"white"} onClick={() => onDecrease(roomNum, children)}>
+        ㅡ
+      </Button>
+      <span>
+        {children} {number}
+      </span>
       <Button color={"white"} onClick={() => onIncrease(roomNum, children)}>
         +
       </Button>
-    </div>
+    </InfoCounterBlock>
   );
 };
 

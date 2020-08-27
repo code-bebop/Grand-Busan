@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
-import GetDate from "../../lib/GetDate";
 import DatePicker from "react-datepicker";
 import Button from "../Common/Button";
 import PopUp from "./PopUp";
@@ -53,10 +52,9 @@ const CustomHeader = styled.div`
   }
 `;
 
-const Chkout = () => {
+const Chkout = (isPopUp, setIsPopUp) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
-  const [isPopUp, setIsPopUp] = useState(false);
 
   return (
     <ChkoutBlock>

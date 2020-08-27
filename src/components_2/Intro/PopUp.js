@@ -7,6 +7,9 @@ const PopUpBlock = styled.div`
   left: 0;
   width: 1400px;
   height: 520px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #fff;
   border-bottom: 1px solid #ccc;
   overflow: hidden;
@@ -15,6 +18,7 @@ const PopUpBlock = styled.div`
     if (props.isPopUp === false) {
       return css`
         height: 0;
+        border: none;
       `;
     }
   }}
