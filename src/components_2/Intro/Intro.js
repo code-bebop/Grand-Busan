@@ -67,7 +67,7 @@ const IntroOverlay = styled.div`
 `;
 
 const Intro = () => {
-  const [isPopUp, setIsPopUp] = useState(false);
+  const [isPopUp, setIsPopUp] = useState({ chkout: false, info: false });
 
   return (
     <div>

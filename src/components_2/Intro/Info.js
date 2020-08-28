@@ -30,6 +30,17 @@ const InfoBlock = styled.button`
   }
 `;
 
+const InfoPopUp = styled(PopUp)`
+  ${(props) => {
+    if (props.isPopUp === false) {
+      return css`
+        height: 0;
+        border: none;
+      `;
+    }
+  }}
+`;
+
 const Info = ({ isPopUp, setIsPopUp }) => {
   const rooms = useSelector((state) => state.rooms);
   let adultSum = 0;
@@ -46,7 +57,7 @@ const Info = ({ isPopUp, setIsPopUp }) => {
 
   return (
     <>
-      <InfoBlock onClick={() => setIsPopUp(!isPopUp)}>
+      <InfoBlock onClick={() => setIsPopUp(!isPopUp.info)}>
         <dl>
           <dt>Room</dt>
           <dd>{roomSum}</dd>
@@ -56,9 +67,9 @@ const Info = ({ isPopUp, setIsPopUp }) => {
           <dd>{childSum}</dd>
         </dl>
       </InfoBlock>
-      <PopUp isPopUp={isPopUp}>
+      <InfoPopUp isPopUp={isPopUp.info}>
         <InfoRoom></InfoRoom>
-      </PopUp>
+      </InfoPopUp>
     </>
   );
 };

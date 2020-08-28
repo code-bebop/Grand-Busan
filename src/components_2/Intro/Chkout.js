@@ -52,18 +52,29 @@ const CustomHeader = styled.div`
   }
 `;
 
-const Chkout = (isPopUp, setIsPopUp) => {
+const ChkoutPopUp = styled(PopUp)`
+  ${(props) => {
+    if (props.isPopUp === false) {
+      return css`
+        height: 0;
+        border: none;
+      `;
+    }
+  }}
+`;
+
+const Chkout = ({ isPopUp, setIsPopUp }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
 
   return (
     <ChkoutBlock>
-      <Button onClick={() => setIsPopUp(!isPopUp)} color={"white"}>
+      <Button onClick={() => setIsPopUp(!isPopUp.chkout)} color={"white"}>
         <strong>Check In / Out</strong>
         <ChkoutDate></ChkoutDate>
         <span>1박</span>
       </Button>{" "}
-      <PopUp isPopUp={isPopUp}>
+      <ChkoutPopUp isPopUp={isPopUp.chkout}>
         <DatePicker
           selected={startDate}
           startDate={startDate}
@@ -90,7 +101,7 @@ const Chkout = (isPopUp, setIsPopUp) => {
             return <span>{day}</span>;
           }}
         />
-      </PopUp>
+      </ChkoutPopUp>
     </ChkoutBlock>
   );
 };

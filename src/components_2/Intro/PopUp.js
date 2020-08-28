@@ -14,18 +14,10 @@ const PopUpBlock = styled.div`
   border-bottom: 1px solid #ccc;
   overflow: hidden;
   transition: height 0.3s;
-  ${(props) => {
-    if (props.isPopUp === false) {
-      return css`
-        height: 0;
-        border: none;
-      `;
-    }
-  }}
 `;
 
-const PopUp = ({ children, isPopUp }) => {
-  return <PopUpBlock isPopUp={isPopUp}>{children}</PopUpBlock>;
+const PopUp = ({ children }) => {
+  return <PopUpBlock>{children}</PopUpBlock>;
 };
 
 export default PopUp;
