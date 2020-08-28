@@ -1,12 +1,12 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const PopUpBlock = styled.div`
   position: absolute;
   bottom: 60px;
   left: 0;
   width: 1400px;
-  height: 520px;
+  height: 0px;
   display: flex;
   justify-content: center;
   align-items: center;

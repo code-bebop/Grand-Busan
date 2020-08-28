@@ -6,6 +6,7 @@ import rsvIco from "../../img/ico_rsv.png";
 
 const Header = styled.header`
   position: fixed;
+  z-index: 2;
   background: #ba998c;
   height: 80px;
   width: 100%;

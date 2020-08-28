@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import DatePicker from "react-datepicker";
 import Button from "../Common/Button";

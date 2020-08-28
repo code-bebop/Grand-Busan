@@ -1,6 +1,8 @@
 import React from "react";
 import Test from "./components_2/Header/Header";
 import Intro from "./components_2/Intro/Intro";
+import Rooms from "./components_2/Rooms/Rooms";
+import { Controller, Scene } from "react-scrollmagic";
 
 import { createGlobalStyle } from "styled-components";
 import GothamM from "./fonts/Gotham-Medium.ttf";
@@ -19,7 +21,14 @@ function App() {
       <Intro></Intro> */}
       <GlobalStyle />
       <Test BoldTxt></Test>
-      <Intro></Intro>
+      <Controller globalSceneOptions={{ triggerHook: "onLeave" }}>
+        <Scene pin>
+          <Intro></Intro>
+        </Scene>
+        <Scene pin>
+          <Rooms></Rooms>
+        </Scene>
+      </Controller>
     </>
   );
 }

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import { useSelector } from "react-redux";
 
 import InfoRoom from "./InfoRoom";
 import PopUp from "./PopUp";
-import Button from "../Common/Button";
 
 const InfoBlock = styled.button`
   background-color: white;
