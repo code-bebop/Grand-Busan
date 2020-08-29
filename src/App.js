@@ -23,10 +23,14 @@ function App() {
       <Test BoldTxt></Test>
       <Controller globalSceneOptions={{ triggerHook: "onLeave" }}>
         <Scene pin>
-          <Intro></Intro>
+          <div>
+            <Intro></Intro>
+          </div>
         </Scene>
         <Scene pin>
-          <Rooms></Rooms>
+          <div>
+            <Rooms></Rooms>
+          </div>
         </Scene>
       </Controller>
     </>
