@@ -1,9 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import Swiper from "react-id-swiper";
+import "swiper/swiper.scss";
 
 import SlideImg1 from "../../img/img_main02_01.jpg";
+import SlideImg2 from "../../img/img_main02_02.jpg";
+import SlideImg3 from "../../img/img_main02_03.jpg";
+import SlideImg4 from "../../img/img_main02_04.jpg";
 import PackageImg from "../../img/img_main02_05.jpg";
 import SideIco from "../../img/btn_view.png";
+import SlideButtonIco from "../../img/btn_swipe_10x18.png";
+import SlideAutoIco from "../../img/btn_auto2.png";
 
 const RoomsBlock = styled.div`
   position: realtive;
@@ -23,6 +30,40 @@ const RoomsWrapper = styled.div`
   left: 250px;
   display: flex;
   justify-content: space-between;
+`;
+
+const RoomsSlide = styled.div`
+  position: relative;
+  width: 1050px;
+  height: 760px;
+  overflow: hidden;
+`;
+
+const SlideButtonWrapper = styled.div`
+  position: absolute;
+  z-index: 1;
+  bottom: 40px;
+  right: 40px;
+`;
+const SlidePrevButton = styled.button`
+  width: 10px;
+  height: 18px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  background-image: url(${SlideButtonIco});
+  background-color: transparent;
+  cursor: pointer;
+`;
+const SlideNextButton = styled(SlidePrevButton)`
+  background-position-x: 10px;
+`;
+const SlideAutoButton = styled(SlidePrevButton)`
+  height: 20px;
+  background-image: url(${SlideAutoIco});
+  background-position-x: 11px;
+  margin: 0 18px;
 `;
 
 const RoomsSide = styled.div`
@@ -90,10 +131,32 @@ const RoomsSidePackage = styled.a`
 `;
 
 const Rooms = () => {
+  const params = {
+    centeredSlides: true,
+    loop: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+  };
+
   return (
     <RoomsBlock>
       <RoomsWrapper>
-        <img src={SlideImg1} alt={"슬라이드 이미지 1"} />
+        <RoomsSlide>
+          <Swiper {...params}>
+            <img src={SlideImg1} alt={"슬라이드 이미지 1"} />
+            <img src={SlideImg2} alt={"슬라이드 이미지 2"} />
+            <img src={SlideImg3} alt={"슬라이드 이미지 3"} />
+            <img src={SlideImg4} alt={"슬라이드 이미지 4"} />
+          </Swiper>
+          <SlideButtonWrapper>
+            <SlidePrevButton />
+            <SlideAutoButton />
+            <SlideNextButton />
+          </SlideButtonWrapper>
+        </RoomsSlide>
+
         <RoomsSide>
           <RoomsSideDes>
             <strong>Revitalizing space</strong>
