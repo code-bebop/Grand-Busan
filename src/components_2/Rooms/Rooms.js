@@ -8,7 +8,7 @@ import SlideImg1 from "../../img/img_main02_01.jpg";
 import SlideImg2 from "../../img/img_main02_02.jpg";
 import SlideImg3 from "../../img/img_main02_03.jpg";
 import SlideImg4 from "../../img/img_main02_04.jpg";
-import PackageImg from "../../img/img_main02_05.jpg";
+// import PackageImg from "../../img/img_main02_05.jpg";
 import SlideButtonIco from "../../img/btn_swipe_10x18.png";
 import SlideAutoIco from "../../img/btn_auto2.png";
 
@@ -73,30 +73,30 @@ const RoomsSide = styled.div`
   height: 100%;
 `;
 
-const RoomsSidePackage = styled.a`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-  strong {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 10px;
-    width: 90px;
-    height: 30px;
-    border: 1px solid #000;
-  }
-  span {
-    font-size: 18px;
-    margin-bottom: 20px;
-    &:nth-child(2) {
-      margin: 20px 0 15px;
-      font-size: 24px;
-    }
-  }
-`;
+// const RoomsSidePackage = styled.a`
+//   flex: 1;
+//   display: flex;
+//   flex-direction: column;
+//   text-decoration: none;
+//   color: inherit;
+//   strong {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     line-height: 10px;
+//     width: 90px;
+//     height: 30px;
+//     border: 1px solid #000;
+//   }
+//   span {
+//     font-size: 18px;
+//     margin-bottom: 20px;
+//     &:nth-child(2) {
+//       margin: 20px 0 15px;
+//       font-size: 24px;
+//     }
+//   }
+// `;
 
 const Rooms = () => {
   const params = {
@@ -127,12 +127,12 @@ const Rooms = () => {
             des={"온전한 쉼과 재충전에 집중할 수 있는 더 없이 완벽한 공간"}
             tags={"Rooms / Suites / Kids"}
           ></SideDes>
-          <RoomsSidePackage href={"#none"}>
+          {/* <RoomsSidePackage href={"#none"}>
             <strong>Package</strong>
             <span>Super Saver</span>
             <span>2020.08.19 - 2020.08.31</span>
             <img src={PackageImg} alt={"패키지 이미지"} />
-          </RoomsSidePackage>
+          </RoomsSidePackage> */}
         </RoomsSide>
       </RoomsWrapper>
     </RoomsBlock>

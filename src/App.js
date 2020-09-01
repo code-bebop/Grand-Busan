@@ -2,8 +2,9 @@ import React from "react";
 import Test from "./components_2/Header/Header";
 import Intro from "./components_2/Intro/Intro";
 import Rooms from "./components_2/Rooms/Rooms";
-import { Controller, Scene } from "react-scrollmagic";
+import Dining from "./components_2/Dining/Dining";
 
+import { Controller, Scene } from "react-scrollmagic";
 import { createGlobalStyle } from "styled-components";
 import GothamM from "./fonts/Gotham-Medium.ttf";
 
@@ -30,6 +31,11 @@ function App() {
         <Scene pin>
           <div>
             <Rooms></Rooms>
+          </div>
+        </Scene>
+        <Scene pin>
+          <div>
+            <Dining></Dining>
           </div>
         </Scene>
       </Controller>
