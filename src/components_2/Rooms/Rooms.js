@@ -3,12 +3,12 @@ import styled from "styled-components";
 import Swiper from "react-id-swiper";
 import "swiper/swiper.scss";
 
+import SideDes from "../Common/SideDes";
 import SlideImg1 from "../../img/img_main02_01.jpg";
 import SlideImg2 from "../../img/img_main02_02.jpg";
 import SlideImg3 from "../../img/img_main02_03.jpg";
 import SlideImg4 from "../../img/img_main02_04.jpg";
 import PackageImg from "../../img/img_main02_05.jpg";
-import SideIco from "../../img/btn_view.png";
 import SlideButtonIco from "../../img/btn_swipe_10x18.png";
 import SlideAutoIco from "../../img/btn_auto2.png";
 
@@ -73,38 +73,6 @@ const RoomsSide = styled.div`
   height: 100%;
 `;
 
-const RoomsSideDes = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  width: 275px;
-  text-transform: uppercase;
-  margin-bottom: 60px;
-  strong {
-    font-size: 42px;
-    margin: 45px 0 8px;
-  }
-  span {
-    font-size: 18px;
-    &:nth-child(3) {
-      font-size: 16px;
-      font-weight: bold;
-      color: #ba998c;
-      margin: 25px 0 35px;
-    }
-  }
-  a {
-    background-image: url(${SideIco});
-    background-repeat: no-repeat;
-    width: 42px;
-    height: 42px;
-    text-indent: -9999px;
-    &:hover {
-      background-position-x: -42px;
-    }
-  }
-`;
-
 const RoomsSidePackage = styled.a`
   flex: 1;
   display: flex;
@@ -134,10 +102,6 @@ const Rooms = () => {
   const params = {
     centeredSlides: true,
     loop: true,
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-    },
   };
 
   return (
@@ -158,12 +122,11 @@ const Rooms = () => {
         </RoomsSlide>
 
         <RoomsSide>
-          <RoomsSideDes>
-            <strong>Revitalizing space</strong>
-            <span>온전한 쉼과 재충전에 집중할 수 있는 더 없이 완벽한 공간</span>
-            <span>Rooms / Suites / Kids</span>
-            <a href={"/"}>바로가기</a>
-          </RoomsSideDes>
+          <SideDes
+            title={"Revitalizing space"}
+            des={"온전한 쉼과 재충전에 집중할 수 있는 더 없이 완벽한 공간"}
+            tags={"Rooms / Suites / Kids"}
+          ></SideDes>
           <RoomsSidePackage href={"#none"}>
             <strong>Package</strong>
             <span>Super Saver</span>
