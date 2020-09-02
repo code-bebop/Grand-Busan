@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Swiper from "react-id-swiper";
 import "swiper/swiper.scss";
 
-import SideDes from "../Common/SideDes";
+import PageDes from "../Common/PageDes";
 import SlideImg1 from "../../img/img_main02_01.jpg";
 import SlideImg2 from "../../img/img_main02_02.jpg";
 import SlideImg3 from "../../img/img_main02_03.jpg";
@@ -122,11 +122,11 @@ const Rooms = () => {
         </RoomsSlide>
 
         <RoomsSide>
-          <SideDes
+          <PageDes
             title={"Revitalizing space"}
             des={"온전한 쉼과 재충전에 집중할 수 있는 더 없이 완벽한 공간"}
             tags={"Rooms / Suites / Kids"}
-          ></SideDes>
+          ></PageDes>
           {/* <RoomsSidePackage href={"#none"}>
             <strong>Package</strong>
             <span>Super Saver</span>

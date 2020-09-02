@@ -32,7 +32,7 @@ const HeaderList = styled.ul`
 `;
 
 const HeaderListItem = styled.li`
-  color: #fff;
+  color: #000;
   list-style: none;
   position: relative;
   a {
@@ -64,7 +64,7 @@ const HeaderListItem = styled.li`
     left: -40px;
     width: 1px;
     height: 12px;
-    background-color: #fff;
+    background-color: #000;
   }
 `;
 

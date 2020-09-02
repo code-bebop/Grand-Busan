@@ -39,6 +39,7 @@ const SideDesBlock = styled.div`
         flex-direction: row;
         width: 100%;
         align-items: flex-end;
+        margin-bottom: 40px;
         strong {
           margin: 0 25px 0 0;
         }
@@ -53,7 +54,7 @@ const SideDesBlock = styled.div`
   }}
 `;
 
-const SideDes = ({ title, des, tags, vertical = true }) => {
+const PageDes = ({ title, des, tags, vertical = true }) => {
   if (!des) {
     return (
       <SideDesBlock vertical={vertical}>
@@ -73,4 +74,4 @@ const SideDes = ({ title, des, tags, vertical = true }) => {
   );
 };
 
-export default SideDes;
+export default PageDes;

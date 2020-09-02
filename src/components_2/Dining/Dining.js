@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import SideDes from "../Common/SideDes";
+import PageDes from "../Common/PageDes";
 import DiningBg from "../../img/bg_dining.jpg";
 
 const DiningBlock = styled.div`
@@ -27,7 +27,7 @@ const Dining = () => {
   return (
     <DiningBlock>
       <DiningSideDesBlock>
-        <SideDes
+        <PageDes
           title={"Handpicked Gourmet Experience"}
           des={"최고만 엄선한 미식의 경험"}
           tags={"Chinese / Buffet / Lounge&Bar"}
