@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import SideIco from "../../img/btn_view.png";
 
@@ -33,9 +33,36 @@ const SideDesBlock = styled.div`
       background-position-x: -42px;
     }
   }
+  ${(props) => {
+    if (props.vertical === false) {
+      return css`
+        flex-direction: row;
+        width: 100%;
+        align-items: flex-end;
+        strong {
+          margin: 0 25px 0 0;
+        }
+        span {
+          font-size: 16px;
+          font-weight: bold;
+          color: #ba998c;
+          margin: 0 auto 0 0;
+        }
+      `;
+    }
+  }}
 `;
 
-const SideDes = ({ title, des, tags }) => {
+const SideDes = ({ title, des, tags, vertical = true }) => {
+  if (!des) {
+    return (
+      <SideDesBlock vertical={vertical}>
+        <strong>{title}</strong>
+        <span>{tags}</span>
+        <a href={"/"}>바로가기</a>
+      </SideDesBlock>
+    );
+  }
   return (
     <SideDesBlock>
       <strong>{title}</strong>

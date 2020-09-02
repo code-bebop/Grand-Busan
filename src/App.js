@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Test from "./components_2/Header/Header";
 import Intro from "./components_2/Intro/Intro";
 import Rooms from "./components_2/Rooms/Rooms";
 import Dining from "./components_2/Dining/Dining";
+import Facility from "./components_2/Facility/Facility";
 
 import { Controller, Scene } from "react-scrollmagic";
 import { createGlobalStyle } from "styled-components";
@@ -16,6 +17,18 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const Scene_1 = useRef();
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollHandler);
+  }, [Scene_1]);
+
+  const scrollHandler = (e) => {
+    e.preventDefault();
+    let scrollY = window.scrollY;
+    console.log(Scene_1.current);
+  };
+
   return (
     <>
       {/* <Header></Header>
@@ -23,7 +36,7 @@ function App() {
       <GlobalStyle />
       <Test BoldTxt></Test>
       <Controller globalSceneOptions={{ triggerHook: "onLeave" }}>
-        <Scene pin>
+        <Scene ref={Scene_1} pin>
           <div>
             <Intro></Intro>
           </div>
@@ -36,6 +49,11 @@ function App() {
         <Scene pin>
           <div>
             <Dining></Dining>
+          </div>
+        </Scene>
+        <Scene pin>
+          <div>
+            <Facility></Facility>
           </div>
         </Scene>
       </Controller>
