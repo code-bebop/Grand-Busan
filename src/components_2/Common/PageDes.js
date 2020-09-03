@@ -47,6 +47,7 @@ const SideDesBlock = styled.div`
         }
         ${Des} {
           margin: 40px 0 55px;
+          line-height: 34px;
         }
       `;
     }
@@ -58,6 +59,7 @@ const Title = styled.strong`
 `;
 const Des = styled.span`
   font-size: 18px;
+  white-space: pre-line;
 `;
 const Tags = styled.span`
   font-size: 16px;
