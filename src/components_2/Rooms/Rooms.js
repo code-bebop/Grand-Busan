@@ -126,7 +126,7 @@ const Rooms = () => {
             title={"Revitalizing space"}
             des={"온전한 쉼과 재충전에 집중할 수 있는 더 없이 완벽한 공간"}
             tags={"Rooms / Suites / Kids"}
-          ></PageDes>
+          />
           {/* <RoomsSidePackage href={"#none"}>
             <strong>Package</strong>
             <span>Super Saver</span>

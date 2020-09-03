@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
+import Button from "./Button";
 import SideIco from "../../img/btn_view.png";
 
 const SideDesBlock = styled.div`
@@ -10,29 +11,6 @@ const SideDesBlock = styled.div`
   width: 275px;
   text-transform: uppercase;
   margin-bottom: 60px;
-  strong {
-    font-size: 42px;
-    margin: 45px 0 8px;
-  }
-  span {
-    font-size: 18px;
-    &:nth-child(3) {
-      font-size: 16px;
-      font-weight: bold;
-      color: #ba998c;
-      margin: 25px 0 35px;
-    }
-  }
-  a {
-    background-image: url(${SideIco});
-    background-repeat: no-repeat;
-    width: 42px;
-    height: 42px;
-    text-indent: -9999px;
-    &:hover {
-      background-position-x: -42px;
-    }
-  }
   ${(props) => {
     if (props.vertical === false) {
       return css`
@@ -40,26 +18,21 @@ const SideDesBlock = styled.div`
         width: 100%;
         align-items: flex-end;
         margin-bottom: 40px;
-        strong {
+        ${Title} {
           margin: 0 25px 0 0;
         }
-        span {
-          font-size: 16px;
-          font-weight: bold;
-          color: #ba998c;
+        ${Tags} {
           margin: 0 auto 0 0;
         }
       `;
     }
-  }}
-  ${(props) => {
     if (props.color === "white") {
       return css`
         color: #fff;
-        span:nth-child(3) {
+        ${Tags} {
           color: #fff;
         }
-        a {
+        ${SideButton} {
           background-position-x: -85px;
           &:hover {
             background-position-x: -127px;
@@ -67,25 +40,75 @@ const SideDesBlock = styled.div`
         }
       `;
     }
+    if (props.tagOnDes) {
+      return css`
+        ${Tags} {
+          margin: 0;
+        }
+        ${Des} {
+          margin: 40px 0 55px;
+        }
+      `;
+    }
   }}
 `;
+const Title = styled.strong`
+  font-size: ${({ theme }) => theme.fontSizes.title};
+  margin: 45px 0 8px;
+`;
+const Des = styled.span`
+  font-size: 18px;
+`;
+const Tags = styled.span`
+  font-size: 16px;
+  font-weight: bold;
+  color: #ba998c;
+  margin: 25px 0 35px;
+`;
+const SideButton = styled.a`
+  background-image: url(${SideIco});
+  background-repeat: no-repeat;
+  width: 42px;
+  height: 42px;
+  text-indent: -9999px;
+  &:hover {
+    background-position-x: -42px;
+  }
+`;
 
-const PageDes = ({ title, des, tags, vertical = true, color }) => {
+const PageDes = ({ title, des, tags, vertical = true, color, tagOnDes }) => {
   if (!des) {
     return (
-      <SideDesBlock vertical={vertical} color={color}>
-        <strong>{title}</strong>
-        <span>{tags}</span>
-        <a href={"/"}>바로가기</a>
+      <SideDesBlock vertical={vertical} color={color} des={des}>
+        <Title>{title}</Title>
+        <Tags>{tags}</Tags>
+        <SideButton href={"/"}>바로가기</SideButton>
+      </SideDesBlock>
+    );
+  }
+  if (tagOnDes) {
+    return (
+      <SideDesBlock
+        vertical={vertical}
+        color={color}
+        des={des}
+        tagOnDes={tagOnDes}
+      >
+        <Title>{title}</Title>
+        <Tags>{tags}</Tags>
+        <Des>{des}</Des>
+        <Button width="175px" height="50px" color="black" fontsize="18px">
+          혜택 확인 및 가입
+        </Button>
       </SideDesBlock>
     );
   }
   return (
-    <SideDesBlock vertical={vertical} color={color}>
-      <strong>{title}</strong>
-      <span>{des}</span>
-      <span>{tags}</span>
-      <a href={"/"}>바로가기</a>
+    <SideDesBlock vertical={vertical} color={color} des={des}>
+      <Title>{title}</Title>
+      <Des>{des}</Des>
+      <Tags>{tags}</Tags>
+      <SideButton href={"/"}>바로가기</SideButton>
     </SideDesBlock>
   );
 };

@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 const CommonButton = styled.button`
   outline: none;
   border: none;
-  font-size: 24px;
+  font-size: ${(props) => (props.fontsize ? props.fontsize : "24px")};
   text-transform: uppercase;
   cursor: pointer;
   width: ${(props) => props.width};
@@ -30,6 +30,7 @@ const Button = ({ children, width, height, color, ...props }) => {
       width={width}
       height={height}
       color={color}
+      fontsize={props.fontsize}
       onClick={props.onClick}
     >
       {children}

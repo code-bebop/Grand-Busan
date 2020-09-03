@@ -13,7 +13,7 @@ const ActivityBlock = styled.div`
   position: relative;
 `;
 
-const ActivityBlockWrapper = styled.div`
+const ActivityWrapper = styled.div`
   position: absolute;
   top: 200px;
   left: 252px;
@@ -35,7 +35,7 @@ const ActivitySide = styled.div`
 const Activity = ({}) => {
   return (
     <ActivityBlock>
-      <ActivityBlockWrapper>
+      <ActivityWrapper>
         <PageDes
           title={"Get Active"}
           des={"몸과 마음에 활력을 더해 줄 다채로운 액티비티"}
@@ -50,7 +50,7 @@ const Activity = ({}) => {
             imgUrl={ActivitySideImg}
           />
         </ActivitySide>
-      </ActivityBlockWrapper>
+      </ActivityWrapper>
     </ActivityBlock>
   );
 };
