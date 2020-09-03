@@ -52,12 +52,28 @@ const SideDesBlock = styled.div`
       `;
     }
   }}
+  ${(props) => {
+    if (props.color === "white") {
+      return css`
+        color: #fff;
+        span:nth-child(3) {
+          color: #fff;
+        }
+        a {
+          background-position-x: -85px;
+          &:hover {
+            background-position-x: -127px;
+          }
+        }
+      `;
+    }
+  }}
 `;
 
-const PageDes = ({ title, des, tags, vertical = true }) => {
+const PageDes = ({ title, des, tags, vertical = true, color }) => {
   if (!des) {
     return (
-      <SideDesBlock vertical={vertical}>
+      <SideDesBlock vertical={vertical} color={color}>
         <strong>{title}</strong>
         <span>{tags}</span>
         <a href={"/"}>바로가기</a>
@@ -65,7 +81,7 @@ const PageDes = ({ title, des, tags, vertical = true }) => {
     );
   }
   return (
-    <SideDesBlock>
+    <SideDesBlock vertical={vertical} color={color}>
       <strong>{title}</strong>
       <span>{des}</span>
       <span>{tags}</span>

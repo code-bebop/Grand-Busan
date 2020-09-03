@@ -4,6 +4,7 @@ import Intro from "./components_2/Intro/Intro";
 import Rooms from "./components_2/Rooms/Rooms";
 import Dining from "./components_2/Dining/Dining";
 import Facility from "./components_2/Facility/Facility";
+import Activity from "./components_2/Activity/Activity";
 
 import { Controller, Scene } from "react-scrollmagic";
 import { createGlobalStyle } from "styled-components";
@@ -54,6 +55,11 @@ function App() {
         <Scene pin>
           <div>
             <Facility></Facility>
+          </div>
+        </Scene>
+        <Scene pin>
+          <div>
+            <Activity></Activity>
           </div>
         </Scene>
       </Controller>
