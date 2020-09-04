@@ -23,6 +23,7 @@ const MembershipWrapper = styled.div`
   width: 1400px;
   height: 640px;
   padding: 0 55px 0 95px;
+  box-sizing: border-box;
 `;
 
 const Membership = () => {

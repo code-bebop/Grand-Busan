@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import { ThemeProvider } from "styled-components";
 import theme from "./theme";
 
@@ -20,20 +20,45 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'GothamM';
     src: url(${GothamM}) format('truetype');
   }
+  html {
+    scroll-behavior: smooth;
+    overflow-y: hidden;
+  }
 `;
 
 function App() {
-  const Scene_1 = useRef();
+  const Controll = useRef(null);
+  const Scene1 = useRef(null);
+
+  const scrollHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      window.removeEventListener("mousewheel", scrollHandler, {
+        passive: false,
+      });
+
+      const controller = Controll.current.state.controller;
+      let scrollPos = controller.scrollPos();
+
+      if (e.deltaY > 0) {
+        controller.scrollTo(scrollPos + 969);
+      } else if (e.deltaY < 0) {
+        controller.scrollTo(scrollPos - 969);
+      }
+      setTimeout(() => {
+        window.addEventListener("mousewheel", scrollHandler, {
+          passive: false,
+        });
+      }, 600);
+    },
+    [Controll]
+  );
 
   useEffect(() => {
-    window.addEventListener("scroll", scrollHandler);
-  }, [Scene_1]);
-
-  const scrollHandler = (e) => {
-    e.preventDefault();
-    let scrollY = window.scrollY;
-    console.log(Scene_1.current);
-  };
+    window.addEventListener("mousewheel", scrollHandler, {
+      passive: false,
+    });
+  }, [scrollHandler]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -41,10 +66,13 @@ function App() {
       <Intro></Intro> */}
       <GlobalStyle />
       <Test BoldTxt></Test>
-      <Controller globalSceneOptions={{ triggerHook: "onLeave" }}>
-        <Scene ref={Scene_1} pin>
+      <Controller
+        ref={Controll}
+        globalSceneOptions={{ triggerHook: "onLeave" }}
+      >
+        <Scene pin>
           <div>
-            <Intro></Intro>
+            <Intro ref={Scene1}></Intro>
           </div>
         </Scene>
         <Scene pin>

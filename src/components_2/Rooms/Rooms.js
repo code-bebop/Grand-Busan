@@ -13,7 +13,6 @@ import SlideButtonIco from "../../img/btn_swipe_10x18.png";
 import SlideAutoIco from "../../img/btn_auto2.png";
 
 const RoomsBlock = styled.div`
-  position: realtive;
   background-color: #fff;
   &:after {
     content: "";
@@ -98,14 +97,14 @@ const RoomsSide = styled.div`
 //   }
 // `;
 
-const Rooms = () => {
+const Rooms = React.forwardRef((props, ref) => {
   const params = {
     centeredSlides: true,
     loop: true,
   };
 
   return (
-    <RoomsBlock>
+    <RoomsBlock ref={ref}>
       <RoomsWrapper>
         <RoomsSlide>
           <Swiper {...params}>
@@ -137,6 +136,6 @@ const Rooms = () => {
       </RoomsWrapper>
     </RoomsBlock>
   );
-};
+});
 
 export default Rooms;

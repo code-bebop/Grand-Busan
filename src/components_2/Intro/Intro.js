@@ -66,11 +66,11 @@ const IntroOverlay = styled.div`
   }}
 `;
 
-const Intro = () => {
+const Intro = React.forwardRef((props, ref) => {
   const [isPopUp, setIsPopUp] = useState({ chkout: false, info: false });
 
   return (
-    <div>
+    <div ref={ref}>
       <IntroBg src={bg_main01} alt={"인트로 배경화면"}></IntroBg>
       <IntroWrapper>
         <IntroTxtBox>
@@ -91,6 +91,6 @@ const Intro = () => {
       ></IntroOverlay>
     </div>
   );
-};
+});
 
 export default Intro;

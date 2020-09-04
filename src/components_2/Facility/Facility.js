@@ -70,7 +70,7 @@ const FacilityAccordion = styled.div`
   }}
 `;
 
-const Facility = ({}) => {
+const Facility = () => {
   const [on, setOn] = useState(3);
   const Accordions = ["Pool", "Sauna", "Fitness"];
 
