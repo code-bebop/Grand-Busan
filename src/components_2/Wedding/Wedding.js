@@ -33,7 +33,7 @@ const Wedding = () => {
               width: "170px",
               height: "50px",
               color: "white_2",
-              fontsize: "18px",
+              fontsize: "16px",
             },
             content: ["미팅 자세히 보기", "웨딩 자세히 보기"],
           }}

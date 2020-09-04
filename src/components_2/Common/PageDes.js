@@ -139,6 +139,7 @@ const PageDes = ({
               height={button.style.height}
               color={button.style.color}
               fontsize={button.style.fontsize}
+              hoverEffect
               key={index}
             >
               {String(content)}
