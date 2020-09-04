@@ -27,7 +27,17 @@ const Wedding = () => {
           des="인생의 특별한 순간, 이벤트, 컨퍼런스홀 그랜드 조선 부산에서 준비해보세요."
           color="white"
           width="auto"
-        />
+          align="center"
+          button={{
+            style: {
+              width: "170px",
+              height: "50px",
+              color: "white_2",
+              fontsize: "18px",
+            },
+            content: ["미팅 자세히 보기", "웨딩 자세히 보기"],
+          }}
+        ></PageDes>
       </WeddingBlockWrapper>
     </WeddingBlock>
   );

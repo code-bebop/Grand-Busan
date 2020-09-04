@@ -8,6 +8,7 @@ const SideDesBlock = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: ${(props) => (props.align ? props.align : "auto")};
   width: ${(props) => (props.width ? props.width : "275px")};
   text-transform: uppercase;
   margin-bottom: 60px;
@@ -78,6 +79,16 @@ const SideButton = styled.a`
   }
 `;
 
+const ButtonContainer = styled.div`
+  margin-top: 36px;
+  display: flex;
+  button {
+    & + button {
+      margin-left: 8px;
+    }
+  }
+`;
+
 const PageDes = ({
   title,
   des,
@@ -86,20 +97,20 @@ const PageDes = ({
   color,
   tagOnDes,
   width,
+  align,
+  button,
 }) => {
   const PageDesContent = () => {
     if (!des) {
       return (
         <>
           <Tags>{tags}</Tags>
-          <SideButton href={"/"}>바로가기</SideButton>
         </>
       );
     } else if (!tags) {
       return (
         <>
           <Des>{des}</Des>
-          <SideButton href={"/"}>바로가기</SideButton>
         </>
       );
     } else if (tagOnDes) {
@@ -107,9 +118,6 @@ const PageDes = ({
         <>
           <Tags>{tags}</Tags>
           <Des>{des}</Des>
-          <Button width="175px" height="50px" color="black" fontsize="18px">
-            혜택 확인 및 가입
-          </Button>
         </>
       );
     } else {
@@ -117,10 +125,30 @@ const PageDes = ({
         <>
           <Des>{des}</Des>
           <Tags>{tags}</Tags>
-          <SideButton href={"/"}>바로가기</SideButton>
         </>
       );
     }
+  };
+  const PageDesButton = () => {
+    return button ? (
+      <ButtonContainer>
+        {button.content.map((content, index) => {
+          return (
+            <Button
+              width={button.style.width}
+              height={button.style.height}
+              color={button.style.color}
+              fontsize={button.style.fontsize}
+              key={index}
+            >
+              {String(content)}
+            </Button>
+          );
+        })}
+      </ButtonContainer>
+    ) : (
+      <SideButton href={"/"}>바로가기</SideButton>
+    );
   };
 
   return (
@@ -129,9 +157,11 @@ const PageDes = ({
       color={color}
       tagOnDes={tagOnDes}
       width={width}
+      align={align}
     >
       <Title>{title}</Title>
       {PageDesContent()}
+      {PageDesButton()}
     </SideDesBlock>
   );
 };

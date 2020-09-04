@@ -15,6 +15,12 @@ const CommonButton = styled.button`
         color: #000;
         background-color: #fff;
       `;
+    } else if (props.color === "white_2") {
+      return css`
+        color: #fff;
+        background-color: transparent;
+        border: 1px solid #fff;
+      `;
     } else if (props.color === "black") {
       return css`
         color: #fff;
