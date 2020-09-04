@@ -32,7 +32,7 @@ const ActivitySide = styled.div`
   background-color: #fff;
 `;
 
-const Activity = ({}) => {
+const Activity = () => {
   return (
     <ActivityBlock>
       <ActivityWrapper>

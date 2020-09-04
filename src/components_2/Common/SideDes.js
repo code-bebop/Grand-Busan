@@ -21,7 +21,7 @@ const SideDesBlock = styled.div`
       }
       &:nth-child(3) {
         font-size: 16px;
-        color: #7c7c7c;
+        color: ${({ theme }) => theme.colors.gray};
       }
     }
   }

@@ -8,7 +8,7 @@ const SideDesBlock = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  width: 275px;
+  width: ${(props) => (props.width ? props.width : "275px")};
   text-transform: uppercase;
   margin-bottom: 60px;
   ${(props) => {
@@ -58,13 +58,13 @@ const Title = styled.strong`
   margin: 45px 0 8px;
 `;
 const Des = styled.span`
-  font-size: 18px;
+  font-size: ${({ theme }) => theme.fontSizes.des};
   white-space: pre-line;
 `;
 const Tags = styled.span`
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fontSizes.tags};
   font-weight: bold;
-  color: #ba998c;
+  color: ${({ theme }) => theme.colors.beige};
   margin: 25px 0 35px;
 `;
 const SideButton = styled.a`
@@ -78,39 +78,60 @@ const SideButton = styled.a`
   }
 `;
 
-const PageDes = ({ title, des, tags, vertical = true, color, tagOnDes }) => {
-  if (!des) {
-    return (
-      <SideDesBlock vertical={vertical} color={color} des={des}>
-        <Title>{title}</Title>
-        <Tags>{tags}</Tags>
-        <SideButton href={"/"}>바로가기</SideButton>
-      </SideDesBlock>
-    );
-  }
-  if (tagOnDes) {
-    return (
-      <SideDesBlock
-        vertical={vertical}
-        color={color}
-        des={des}
-        tagOnDes={tagOnDes}
-      >
-        <Title>{title}</Title>
-        <Tags>{tags}</Tags>
-        <Des>{des}</Des>
-        <Button width="175px" height="50px" color="black" fontsize="18px">
-          혜택 확인 및 가입
-        </Button>
-      </SideDesBlock>
-    );
-  }
+const PageDes = ({
+  title,
+  des,
+  tags,
+  vertical = true,
+  color,
+  tagOnDes,
+  width,
+}) => {
+  const PageDesContent = () => {
+    if (!des) {
+      return (
+        <>
+          <Tags>{tags}</Tags>
+          <SideButton href={"/"}>바로가기</SideButton>
+        </>
+      );
+    } else if (!tags) {
+      return (
+        <>
+          <Des>{des}</Des>
+          <SideButton href={"/"}>바로가기</SideButton>
+        </>
+      );
+    } else if (tagOnDes) {
+      return (
+        <>
+          <Tags>{tags}</Tags>
+          <Des>{des}</Des>
+          <Button width="175px" height="50px" color="black" fontsize="18px">
+            혜택 확인 및 가입
+          </Button>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Des>{des}</Des>
+          <Tags>{tags}</Tags>
+          <SideButton href={"/"}>바로가기</SideButton>
+        </>
+      );
+    }
+  };
+
   return (
-    <SideDesBlock vertical={vertical} color={color} des={des}>
+    <SideDesBlock
+      vertical={vertical}
+      color={color}
+      tagOnDes={tagOnDes}
+      width={width}
+    >
       <Title>{title}</Title>
-      <Des>{des}</Des>
-      <Tags>{tags}</Tags>
-      <SideButton href={"/"}>바로가기</SideButton>
+      {PageDesContent()}
     </SideDesBlock>
   );
 };

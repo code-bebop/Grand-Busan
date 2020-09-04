@@ -9,6 +9,7 @@ import Dining from "./components_2/Dining/Dining";
 import Facility from "./components_2/Facility/Facility";
 import Activity from "./components_2/Activity/Activity";
 import Membership from "./components_2/Membership/Membership";
+import Wedding from "./components_2/Wedding/Wedding";
 
 import { Controller, Scene } from "react-scrollmagic";
 import { createGlobalStyle } from "styled-components";
@@ -69,6 +70,11 @@ function App() {
         <Scene pin>
           <div>
             <Membership></Membership>
+          </div>
+        </Scene>
+        <Scene pin>
+          <div>
+            <Wedding></Wedding>
           </div>
         </Scene>
       </Controller>
