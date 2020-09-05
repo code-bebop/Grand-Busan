@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef, useCallback, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import theme from "./theme";
 
-import Test from "./components_2/Header/Header";
+import Header from "./components_2/Header/Header";
 import Intro from "./components_2/Intro/Intro";
 import Rooms from "./components_2/Rooms/Rooms";
 import Dining from "./components_2/Dining/Dining";
@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const Controll = useRef(null);
-  const Scene1 = useRef(null);
+  const [controllChild, setControllChild] = useState(undefined);
 
   const scrollHandler = useCallback(
     (e) => {
@@ -36,7 +36,6 @@ function App() {
       window.removeEventListener("mousewheel", scrollHandler, {
         passive: false,
       });
-
       const controller = Controll.current.state.controller;
       let scrollPos = controller.scrollPos();
 
@@ -58,21 +57,21 @@ function App() {
     window.addEventListener("mousewheel", scrollHandler, {
       passive: false,
     });
-  }, [scrollHandler]);
+
+    setControllChild(Controll.current.props.children.length);
+  }, [scrollHandler, controllChild, Controll, setControllChild]);
 
   return (
     <ThemeProvider theme={theme}>
-      {/* <Header></Header>
-      <Intro></Intro> */}
       <GlobalStyle />
-      <Test BoldTxt></Test>
+      <Header ControllChild={controllChild}></Header>
       <Controller
         ref={Controll}
         globalSceneOptions={{ triggerHook: "onLeave" }}
       >
         <Scene pin>
           <div>
-            <Intro ref={Scene1}></Intro>
+            <Intro></Intro>
           </div>
         </Scene>
         <Scene pin>

@@ -1,15 +1,37 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import styled, { css } from "styled-components";
 
-import logoImg from "../../img/bg_logo.png";
+import logoImg from "../../img/bg_logo_grand.png";
 import rsvIco from "../../img/ico_rsv.png";
 
-const Header = styled.header`
+const HeaderBlock = styled.header`
   position: fixed;
   z-index: 2;
   background: transparent;
-  height: 80px;
   width: 100%;
+  ${(props) => {
+    if (props.isHover) {
+      return css`
+        background-color: #fff;
+        & > div > a {
+          background-position-y: -42px;
+        }
+        li {
+          &:first-child {
+            &::before {
+              background-color: #000;
+            }
+            & > a::after {
+              background-position-y: -10px;
+            }
+          }
+          a {
+            color: #000;
+          }
+        }
+      `;
+    }
+  }}
 `;
 
 const HeaderWrapper = styled.div`
@@ -20,73 +42,124 @@ const HeaderWrapper = styled.div`
 `;
 
 const HeaderLogo = styled.a`
-  width: 87px;
-  height: 30px;
+  width: 118px;
+  height: 42px;
   background-image: url(${logoImg});
   background-repeat: no-repeat;
   text-indent: -9999px;
+  margin-top: 30px;
 `;
 
 const HeaderList = styled.ul`
   display: flex;
+  margin: 0 0 0 70px;
 `;
 
 const HeaderListItem = styled.li`
-  color: #000;
   list-style: none;
   position: relative;
+  &:first-child > a:hover::before {
+    display: none;
+  }
   a {
+    display: block;
+    box-sizing: border-box;
+    padding: 40px 0 3px 40px;
     color: inherit;
     text-decoration: none;
     text-transform: uppercase;
+    color: #fff;
     font-weight: bold;
     font-size: 14px;
     font-family: GotahmM;
+    position: relative;
+    &:hover {
+      color: ${({ theme }) => theme.colors.beige};
+      &::before {
+        content: "";
+        display: block;
+        width: calc(100% - 40px);
+        height: 2px;
+        position: absolute;
+        left: 40px;
+        bottom: 0;
+        background-color: ${({ theme }) => theme.colors.beige};
+      }
+    }
   }
-  &:first-child > a::after {
-    content: "";
-    display: inline-block;
-    width: 16px;
-    height: 10px;
-    background-image: url(${rsvIco});
-    background-size: cover;
-    background-repeat: no-repeat;
-    margin-left: 10px;
-  }
-  & + & {
-    margin-left: 85px;
-  }
-  & + &:before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    top: 6px;
-    left: -40px;
-    width: 1px;
-    height: 12px;
-    background-color: #000;
+  &:first-child {
+    & > a {
+      padding-right: 45px;
+    }
+    &::before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 45px;
+      right: 0;
+      width: 1px;
+      height: 12px;
+      background-color: #fff;
+    }
+    & > a::after {
+      content: "";
+      display: inline-block;
+      width: 16px;
+      height: 10px;
+      background-image: url(${rsvIco});
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin-left: 10px;
+    }
+    &:hover > a::after {
+      background-position-y: -20px;
+    }
   }
 `;
 
-const Test = () => {
+const Header = ({ ControllChild }) => {
+  const listArray = [
+    "Reservation",
+    "Rooms",
+    "Dining",
+    "Offers",
+    "Meeting & Wedding",
+    "Activity",
+    "Facilities",
+    "About",
+  ];
+  const [isHover, setIsHover] = useState(false);
+
+  useEffect(() => {
+    console.log(ControllChild);
+  }, [ControllChild]);
+
   return (
-    <Header>
+    <HeaderBlock isHover={isHover}>
       <HeaderWrapper>
         <HeaderLogo href={"/"}>로고 이미지</HeaderLogo>
         <HeaderList>
-          <HeaderListItem>
-            <a href="/">Reservation</a>
-          </HeaderListItem>
-          <HeaderListItem>
-            <a href="/">Offers</a>
-          </HeaderListItem>
-          <HeaderListItem>
-            <a href="/">My Reservation</a>
-          </HeaderListItem>
+          {listArray.map((listItem, index) => {
+            return (
+              <HeaderListItem key={index}>
+                <a
+                  href="/"
+                  onMouseEnter={() => {
+                    setIsHover(true);
+                  }}
+                  onMouseLeave={() => {
+                    setIsHover(false);
+                  }}
+                >
+                  {listItem}
+                </a>
+              </HeaderListItem>
+            );
+          })}
         </HeaderList>
       </HeaderWrapper>
-    </Header>
+    </HeaderBlock>
   );
 };
 
-export default Test;
+export default Header;
