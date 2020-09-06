@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 
+import listArray from "./HeaderMenu.json";
 import logoImg from "../../img/bg_logo_grand.png";
 import rsvIco from "../../img/ico_rsv.png";
 
@@ -9,6 +10,7 @@ const HeaderBlock = styled.header`
   z-index: 2;
   background: transparent;
   width: 100%;
+  height: 100px;
   ${(props) => {
     if (props.isHover) {
       return css`
@@ -18,7 +20,7 @@ const HeaderBlock = styled.header`
         }
         li {
           &:first-child {
-            &::before {
+            & > a::before {
               background-color: #000;
             }
             & > a::after {
@@ -36,7 +38,7 @@ const HeaderBlock = styled.header`
 
 const HeaderWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin: 0 50px;
   height: 100%;
 `;
@@ -57,9 +59,6 @@ const HeaderList = styled.ul`
 
 const HeaderListItem = styled.li`
   list-style: none;
-  &:first-child > a:hover::before {
-    display: none;
-  }
   & > a {
     display: block;
     box-sizing: border-box;
@@ -74,7 +73,7 @@ const HeaderListItem = styled.li`
     position: relative;
     &:hover {
       color: ${({ theme }) => theme.colors.beige};
-      &::before {
+      &::before:not(:first-child) {
         content: "";
         display: block;
         width: calc(100% - 40px);
@@ -92,16 +91,16 @@ const HeaderListItem = styled.li`
   &:first-child {
     & > a {
       padding-right: 45px;
-    }
-    &::before {
-      content: "";
-      display: inline-block;
-      position: absolute;
-      top: 45px;
-      right: 0;
-      width: 1px;
-      height: 12px;
-      background-color: #fff;
+      &::before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        top: 45px;
+        right: 0;
+        width: 1px;
+        height: 12px;
+        background-color: #fff;
+      }
     }
     & > a::after {
       content: "";
@@ -121,7 +120,7 @@ const HeaderListItem = styled.li`
 
 const SubMenu = styled.div`
   position: absolute;
-  top: 72px;
+  top: 100px;
   left: 0;
   display: none;
   width: 100vw;
@@ -191,58 +190,38 @@ const SubListDeps2Item = styled.li`
 `;
 
 const Header = ({ ControllChild }) => {
-  const listArray = [
-    // {listItem: "Reservation"},
-    {
-      listItem: "Rooms",
-      subListItem: [
-        {
-          subListItemTitle: "Room",
-          subListDeps2: ["Superior", "Deluxe", "Premier"],
-        },
-        {
-          subListItemTitle: "Kids",
-          subListDeps2: ["Kids Superior", "Kids Deluxe", "Kids Premier"],
-        },
-        {
-          subListItemTitle: "Suite",
-          subListDeps2: [
-            "Corner Suite",
-            "Executive Suite",
-            "Royal Suite",
-            "Presidential Suite",
-          ],
-        },
-      ],
-    },
-    {
-      listItem: "Dining",
-      subListItem: [
-        {
-          subListItemTitle: "Aria",
-        },
-        {
-          subListItemTitle: "Palais De Chine",
-        },
-        {
-          subListItemTitle: "Lounge & Bar",
-        },
-        {
-          subListItemTitle: "Josun Deli",
-        },
-      ],
-    },
-    // "Offers",
-    // "Meeting & Wedding",
-    // "Activity",
-    // "Facilities",
-    // "About",
-  ];
   const [isHover, setIsHover] = useState(false);
 
   useEffect(() => {
     console.log(ControllChild);
   }, [ControllChild]);
+
+  const subMenuFn = (listItem) => {
+    if (listItem.subListItem) {
+      return (
+        <SubMenu>
+          <SubMenuInner>
+            <SubMenuTitle>
+              <strong>{listItem.listItem}</strong>
+              <a href="/">한 눈에 보기</a>
+            </SubMenuTitle>
+            <SubList>
+              {listItem.subListItem.map((subListItem, index) => {
+                return (
+                  <SubListItem key={index}>
+                    <a href="/">{subListItem.subListItemTitle}</a>
+                    {subListDeps2Fn(subListItem)}
+                  </SubListItem>
+                );
+              })}
+            </SubList>
+          </SubMenuInner>
+        </SubMenu>
+      );
+    } else {
+      return null;
+    }
+  };
 
   const subListDeps2Fn = (subListItem) => {
     if (subListItem.subListDeps2) {
@@ -281,24 +260,7 @@ const Header = ({ ControllChild }) => {
                 >
                   {listItem.listItem}
                 </a>
-                <SubMenu>
-                  <SubMenuInner>
-                    <SubMenuTitle>
-                      <strong>{listItem.listItem}</strong>
-                      <a href="/">한 눈에 보기</a>
-                    </SubMenuTitle>
-                    <SubList>
-                      {listItem.subListItem.map((subListItem, index) => {
-                        return (
-                          <SubListItem key={index}>
-                            <a href="/">{subListItem.subListItemTitle}</a>
-                            {subListDeps2Fn(subListItem)}
-                          </SubListItem>
-                        );
-                      })}
-                    </SubList>
-                  </SubMenuInner>
-                </SubMenu>
+                {subMenuFn(listItem)}
               </HeaderListItem>
             );
           })}

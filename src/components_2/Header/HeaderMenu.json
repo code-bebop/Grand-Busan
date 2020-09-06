@@ -1,0 +1,115 @@
+[
+  {
+    "listItem": "Reservation",
+    "subListItem": [
+      {
+        "subListItemTitle": "Room"
+      },
+      {
+        "subListItemTitle": "Dining"
+      },
+      {
+        "subListItemTitle": "Membership"
+      }
+    ]
+  },
+  {
+    "listItem": "Rooms",
+    "subListItem": [
+      {
+        "subListItemTitle": "Room",
+        "subListDeps2": ["Superior", "Deluxe", "Premier"]
+      },
+      {
+        "subListItemTitle": "Kids",
+        "subListDeps2": ["Kids Superior", "Kids Deluxe", "Kids Premier"]
+      },
+      {
+        "subListItemTitle": "Suite",
+        "subListDeps2": [
+          "Corner Suite",
+          "Executive Suite",
+          "Royal Suite",
+          "Presidential Suite"
+        ]
+      }
+    ]
+  },
+  {
+    "listItem": "Dining",
+    "subListItem": [
+      {
+        "subListItemTitle": "Aria"
+      },
+      {
+        "subListItemTitle": "Palais De Chine"
+      },
+      {
+        "subListItemTitle": "Lounge & Bar"
+      },
+      {
+        "subListItemTitle": "Josun Deli"
+      }
+    ]
+  },
+  {
+    "listItem": "Offers",
+    "subListItem": [
+      {
+        "subListItemTitle": "Package"
+      },
+      {
+        "subListItemTitle": "Event"
+      }
+    ]
+  },
+  {
+    "listItem": "Meeting & Wedding",
+    "subListItem": [
+      {
+        "subListItemTitle": "Meeting",
+        "subListDeps2": ["Ballroom", "Meeting Room", "Board Room"]
+      },
+      {
+        "subListItemTitle": "Wedding"
+      }
+    ]
+  },
+  {
+    "listItem": "Activity"
+  },
+  {
+    "listItem": "Facilites",
+    "subListItem": [
+      {
+        "subListItemTitle": "Heavenly Pool"
+      },
+      {
+        "subListItemTitle": "Fitness"
+      },
+      {
+        "subListItemTitle": "Sauna"
+      },
+      {
+        "subListItemTitle": "Leding Library"
+      },
+      {
+        "subListItemTitle": "Entertainment"
+      }
+    ]
+  },
+  {
+    "listItem": "About",
+    "subListItem": [
+      {
+        "subListItemTitle": "About us"
+      },
+      {
+        "subListItemTitle": "Josun Junior"
+      },
+      {
+        "subListItemTitle": "Gallery"
+      }
+    ]
+  }
+]
