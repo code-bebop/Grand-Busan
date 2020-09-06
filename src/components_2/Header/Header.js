@@ -25,7 +25,7 @@ const HeaderBlock = styled.header`
               background-position-y: -10px;
             }
           }
-          a {
+          & > a {
             color: #000;
           }
         }
@@ -57,11 +57,10 @@ const HeaderList = styled.ul`
 
 const HeaderListItem = styled.li`
   list-style: none;
-  position: relative;
   &:first-child > a:hover::before {
     display: none;
   }
-  a {
+  & > a {
     display: block;
     box-sizing: border-box;
     padding: 40px 0 3px 40px;
@@ -84,6 +83,9 @@ const HeaderListItem = styled.li`
         left: 40px;
         bottom: 0;
         background-color: ${({ theme }) => theme.colors.beige};
+      }
+      & + div {
+        display: block;
       }
     }
   }
@@ -117,22 +119,148 @@ const HeaderListItem = styled.li`
   }
 `;
 
+const SubMenu = styled.div`
+  position: absolute;
+  top: 72px;
+  left: 0;
+  display: none;
+  width: 100vw;
+  background-color: #fff;
+`;
+const SubMenuInner = styled.div`
+  display: flex;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 1400px;
+  padding: 55px 0 50px 0;
+`;
+const SubMenuTitle = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  strong {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  a {
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+    box-sizing: border-box;
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: #000;
+    }
+  }
+`;
+const SubList = styled.ul`
+  display: flex;
+  padding-left: 174px;
+`;
+const SubListItem = styled.li`
+  list-style: none;
+  & > a {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 20px;
+  }
+  & + & {
+    padding-left: 150px;
+  }
+`;
+const SubListDeps2 = styled.ul`
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+`;
+const SubListDeps2Item = styled.li`
+  list-style: none;
+  & + & {
+    margin-top: 15px;
+  }
+  & > a {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
 const Header = ({ ControllChild }) => {
   const listArray = [
-    "Reservation",
-    "Rooms",
-    "Dining",
-    "Offers",
-    "Meeting & Wedding",
-    "Activity",
-    "Facilities",
-    "About",
+    // {listItem: "Reservation"},
+    {
+      listItem: "Rooms",
+      subListItem: [
+        {
+          subListItemTitle: "Room",
+          subListDeps2: ["Superior", "Deluxe", "Premier"],
+        },
+        {
+          subListItemTitle: "Kids",
+          subListDeps2: ["Kids Superior", "Kids Deluxe", "Kids Premier"],
+        },
+        {
+          subListItemTitle: "Suite",
+          subListDeps2: [
+            "Corner Suite",
+            "Executive Suite",
+            "Royal Suite",
+            "Presidential Suite",
+          ],
+        },
+      ],
+    },
+    {
+      listItem: "Dining",
+      subListItem: [
+        {
+          subListItemTitle: "Aria",
+        },
+        {
+          subListItemTitle: "Palais De Chine",
+        },
+        {
+          subListItemTitle: "Lounge & Bar",
+        },
+        {
+          subListItemTitle: "Josun Deli",
+        },
+      ],
+    },
+    // "Offers",
+    // "Meeting & Wedding",
+    // "Activity",
+    // "Facilities",
+    // "About",
   ];
   const [isHover, setIsHover] = useState(false);
 
   useEffect(() => {
     console.log(ControllChild);
   }, [ControllChild]);
+
+  const subListDeps2Fn = (subListItem) => {
+    if (subListItem.subListDeps2) {
+      return (
+        <SubListDeps2>
+          {subListItem.subListDeps2.map((subListDeps2Item, index) => {
+            return (
+              <SubListDeps2Item key={index}>
+                <a href="/">{subListDeps2Item}</a>
+              </SubListDeps2Item>
+            );
+          })}
+        </SubListDeps2>
+      );
+    } else {
+      return null;
+    }
+  };
 
   return (
     <HeaderBlock isHover={isHover}>
@@ -151,8 +279,26 @@ const Header = ({ ControllChild }) => {
                     setIsHover(false);
                   }}
                 >
-                  {listItem}
+                  {listItem.listItem}
                 </a>
+                <SubMenu>
+                  <SubMenuInner>
+                    <SubMenuTitle>
+                      <strong>{listItem.listItem}</strong>
+                      <a href="/">한 눈에 보기</a>
+                    </SubMenuTitle>
+                    <SubList>
+                      {listItem.subListItem.map((subListItem, index) => {
+                        return (
+                          <SubListItem key={index}>
+                            <a href="/">{subListItem.subListItemTitle}</a>
+                            {subListDeps2Fn(subListItem)}
+                          </SubListItem>
+                        );
+                      })}
+                    </SubList>
+                  </SubMenuInner>
+                </SubMenu>
               </HeaderListItem>
             );
           })}
