@@ -15,6 +15,9 @@ const HeaderBlock = styled.header`
     if (props.isHover) {
       return css`
         background-color: #fff;
+        ${HeaderMenuOverlay} {
+          display: block;
+        }
         & > div > a {
           background-position-y: -42px;
         }
@@ -41,6 +44,7 @@ const HeaderWrapper = styled.div`
   align-items: flex-start;
   margin: 0 50px;
   height: 100%;
+  z-index: 1;
 `;
 
 const HeaderLogo = styled.a`
@@ -59,6 +63,18 @@ const HeaderList = styled.ul`
 
 const HeaderListItem = styled.li`
   list-style: none;
+  ${(props) =>
+    props.isOn === props.id
+      ? css`
+          & > a + div {
+            display: block;
+          }
+        `
+      : css`
+          & > a + div {
+            display: none;
+          }
+        `}
   & > a {
     display: block;
     box-sizing: border-box;
@@ -82,9 +98,6 @@ const HeaderListItem = styled.li`
         left: 40px;
         bottom: 0;
         background-color: ${({ theme }) => theme.colors.beige};
-      }
-      & + div {
-        display: block;
       }
     }
   }
@@ -116,6 +129,12 @@ const HeaderListItem = styled.li`
       background-position-y: -20px;
     }
   }
+`;
+const HeaderMenuOverlay = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
 `;
 
 const SubMenu = styled.div`
@@ -191,10 +210,7 @@ const SubListDeps2Item = styled.li`
 
 const Header = ({ ControllChild }) => {
   const [isHover, setIsHover] = useState(false);
-
-  useEffect(() => {
-    console.log(ControllChild);
-  }, [ControllChild]);
+  const [isOn, setIsOn] = useState(null);
 
   const subMenuFn = (listItem) => {
     if (listItem.subListItem) {
@@ -248,14 +264,12 @@ const Header = ({ ControllChild }) => {
         <HeaderList>
           {listArray.map((listItem, index) => {
             return (
-              <HeaderListItem key={index}>
+              <HeaderListItem key={index} isOn={isOn} id={index}>
                 <a
                   href="/"
-                  onMouseEnter={() => {
+                  onMouseEnter={(e) => {
                     setIsHover(true);
-                  }}
-                  onMouseLeave={() => {
-                    setIsHover(false);
+                    setIsOn(index);
                   }}
                 >
                   {listItem.listItem}
@@ -266,6 +280,12 @@ const Header = ({ ControllChild }) => {
           })}
         </HeaderList>
       </HeaderWrapper>
+      <HeaderMenuOverlay
+        onMouseEnter={() => {
+          setIsHover(false);
+          setIsOn(null);
+        }}
+      />
     </HeaderBlock>
   );
 };
