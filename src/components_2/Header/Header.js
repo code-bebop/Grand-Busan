@@ -58,7 +58,8 @@ const HeaderLogo = styled.a`
 
 const HeaderList = styled.ul`
   display: flex;
-  margin: 0 0 0 70px;
+  margin: 0 0 0 110px;
+  padding: 0;
 `;
 
 const HeaderListItem = styled.li`
@@ -261,19 +262,16 @@ const Header = ({ ControllChild }) => {
     <HeaderBlock isHover={isHover}>
       <HeaderWrapper>
         <HeaderLogo href={"/"}>로고 이미지</HeaderLogo>
-        <HeaderList>
+        <HeaderList
+          onMouseOver={(e) => {
+            setIsHover(true);
+            setIsOn(parseInt(e.target.parentElement.id));
+          }}
+        >
           {listArray.map((listItem, index) => {
             return (
               <HeaderListItem key={index} isOn={isOn} id={index}>
-                <a
-                  href="/"
-                  onMouseEnter={(e) => {
-                    setIsHover(true);
-                    setIsOn(index);
-                  }}
-                >
-                  {listItem.listItem}
-                </a>
+                <a href="/">{listItem.listItem}</a>
                 {subMenuFn(listItem)}
               </HeaderListItem>
             );
