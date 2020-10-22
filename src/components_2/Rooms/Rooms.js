@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import Swiper from "react-id-swiper";
+import SwiperCore, { Navigation, Autoplay } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
+import "swiper/components/navigation/navigation.scss";
 
 import PageDes from "../Common/PageDes";
 import SlideImg1 from "../../img/img_main02_01.jpg";
@@ -36,29 +38,27 @@ const RoomsSlide = styled.div`
   width: 1050px;
   height: 760px;
   overflow: hidden;
+  & .swiper-button-prev,
+  & .swiper-button-next {
+    top: 720px;
+    background-image: url(${SlideButtonIco});
+    width: 10px;
+    height: 18px;
+    color: transparent;
+  }
+  & .swiper-button-prev {
+    left: 943px;
+  }
+  & .swiper-button-next {
+    background-position-x: 10px;
+    right: 40px;
+  }
 `;
 
-const SlideButtonWrapper = styled.div`
+const SlideAutoButton = styled.div`
   position: absolute;
-  z-index: 1;
-  bottom: 40px;
-  right: 40px;
-`;
-const SlidePrevButton = styled.button`
+  top: 720px;
   width: 10px;
-  height: 18px;
-  padding: 0;
-  margin: 0;
-  border: none;
-  outline: none;
-  background-image: url(${SlideButtonIco});
-  background-color: transparent;
-  cursor: pointer;
-`;
-const SlideNextButton = styled(SlidePrevButton)`
-  background-position-x: 10px;
-`;
-const SlideAutoButton = styled(SlidePrevButton)`
   height: 20px;
   background-image: url(${SlideAutoIco});
   background-position-x: 11px;
@@ -97,27 +97,32 @@ const RoomsSide = styled.div`
 //   }
 // `;
 
-const Rooms = React.forwardRef((props, ref) => {
-  const params = {
-    centeredSlides: true,
-    loop: true,
-  };
+SwiperCore.use([Navigation, Autoplay]);
 
+const Rooms = React.forwardRef((props, ref) => {
   return (
     <RoomsBlock ref={ref}>
       <RoomsWrapper>
         <RoomsSlide>
-          <Swiper {...params}>
-            <img src={SlideImg1} alt={"슬라이드 이미지 1"} />
-            <img src={SlideImg2} alt={"슬라이드 이미지 2"} />
-            <img src={SlideImg3} alt={"슬라이드 이미지 3"} />
-            <img src={SlideImg4} alt={"슬라이드 이미지 4"} />
+          <Swiper
+            onSlideChange={() => console.log("slide change")}
+            navigation
+            autoplay={true}
+            loop={true}
+          >
+            <SwiperSlide>
+              <img src={SlideImg1} alt={"슬라이드 이미지 1"} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={SlideImg2} alt={"슬라이드 이미지 2"} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={SlideImg3} alt={"슬라이드 이미지 3"} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={SlideImg4} alt={"슬라이드 이미지 4"} />
+            </SwiperSlide>
           </Swiper>
-          <SlideButtonWrapper>
-            <SlidePrevButton />
-            <SlideAutoButton />
-            <SlideNextButton />
-          </SlideButtonWrapper>
         </RoomsSlide>
 
         <RoomsSide>

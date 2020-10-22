@@ -69,37 +69,37 @@ function App() {
         ref={Controll}
         globalSceneOptions={{ triggerHook: "onLeave" }}
       >
-        <Scene pin>
+        <Scene duration={969} pin>
           <div>
             <Intro></Intro>
           </div>
         </Scene>
-        <Scene pin>
+        <Scene duration={969} pin>
           <div>
             <Rooms></Rooms>
           </div>
         </Scene>
-        <Scene pin>
+        <Scene duration={969} pin>
           <div>
             <Dining></Dining>
           </div>
         </Scene>
-        <Scene pin>
+        <Scene duration={969} pin>
           <div>
             <Facility></Facility>
           </div>
         </Scene>
-        <Scene pin>
+        <Scene duration={969} pin>
           <div>
             <Activity></Activity>
           </div>
         </Scene>
-        <Scene pin>
+        <Scene duration={969} pin>
           <div>
             <Membership></Membership>
           </div>
         </Scene>
-        <Scene pin>
+        <Scene duration={969} pin>
           <div>
             <Wedding></Wedding>
           </div>
