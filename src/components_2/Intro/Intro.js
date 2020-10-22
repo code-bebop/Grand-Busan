@@ -68,6 +68,9 @@ const IntroOverlay = styled.div`
 
 const Intro = React.forwardRef((props, ref) => {
   const [isPopUp, setIsPopUp] = useState({ chkout: false, info: false });
+  const removePopUp = () => {
+    setIsPopUp({ chkout: false, info: false });
+  };
 
   return (
     <div ref={ref}>
@@ -77,7 +80,7 @@ const Intro = React.forwardRef((props, ref) => {
           <strong>Grand Josun Busan</strong>
           <em>Coming Soon</em>
         </IntroTxtBox>
-        <IntroRev isPopUp={isPopUp}>
+        <IntroRev isPopUp={isPopUp.chkout || isPopUp.info}>
           <Chkout isPopUp={isPopUp} setIsPopUp={setIsPopUp} />
           <Info isPopUp={isPopUp} setIsPopUp={setIsPopUp} />
           <Button width={"194px"} height={"60px"} color={"black"}>
@@ -86,8 +89,8 @@ const Intro = React.forwardRef((props, ref) => {
         </IntroRev>
       </IntroWrapper>
       <IntroOverlay
-        isPopUp={isPopUp}
-        onClick={() => setIsPopUp(!isPopUp)}
+        isPopUp={isPopUp.chkout || isPopUp.info}
+        onClick={removePopUp}
       ></IntroOverlay>
     </div>
   );

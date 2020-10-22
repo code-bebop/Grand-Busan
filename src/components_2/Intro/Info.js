@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { useSelector } from "react-redux";
 
 import InfoRoom from "./InfoRoom";
-import PopUp from "./PopUp";
+import PopUp, { PopUpBlock } from "./PopUp";
 
 const InfoBlock = styled.button`
   background-color: white;
@@ -29,7 +29,7 @@ const InfoBlock = styled.button`
   }
 `;
 
-const InfoPopUp = styled(PopUp)`
+const InfoPopUp = styled(PopUpBlock)`
   ${(props) => {
     if (props.isPopUp === false) {
       return css`
@@ -53,10 +53,9 @@ const Info = ({ isPopUp, setIsPopUp }) => {
       roomSum += 1;
     }
   });
-
   return (
     <>
-      <InfoBlock onClick={() => setIsPopUp(!isPopUp.info)}>
+      <InfoBlock onClick={() => setIsPopUp({ chkout: false, info: true })}>
         <dl>
           <dt>Room</dt>
           <dd>{roomSum}</dd>

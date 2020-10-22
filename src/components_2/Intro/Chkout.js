@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import DatePicker from "react-datepicker";
 import Button from "../Common/Button";
-import PopUp from "./PopUp";
+import { PopUpBlock } from "./PopUp";
 
 import "./react-datepicker.css";
 
@@ -52,7 +52,7 @@ const CustomHeader = styled.div`
   }
 `;
 
-const ChkoutPopUp = styled(PopUp)`
+const ChkoutPopUp = styled(PopUpBlock)`
   ${(props) => {
     if (props.isPopUp === false) {
       return css`
@@ -69,11 +69,14 @@ const Chkout = ({ isPopUp, setIsPopUp }) => {
 
   return (
     <ChkoutBlock>
-      <Button onClick={() => setIsPopUp(!isPopUp.chkout)} color={"white"}>
+      <Button
+        onClick={() => setIsPopUp({ chkout: true, info: false })}
+        color={"white"}
+      >
         <strong>Check In / Out</strong>
         <ChkoutDate></ChkoutDate>
         <span>1박</span>
-      </Button>{" "}
+      </Button>
       <ChkoutPopUp isPopUp={isPopUp.chkout}>
         <DatePicker
           selected={startDate}

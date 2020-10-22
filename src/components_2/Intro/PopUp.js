@@ -1,12 +1,11 @@
-import React from "react";
 import styled from "styled-components";
 
-const PopUpBlock = styled.div`
+export const PopUpBlock = styled.div`
   position: absolute;
   bottom: 60px;
   left: 0;
   width: 1400px;
-  height: 0px;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,9 +14,3 @@ const PopUpBlock = styled.div`
   overflow: hidden;
   transition: height 0.3s;
 `;
-
-const PopUp = ({ children }) => {
-  return <PopUpBlock>{children}</PopUpBlock>;
-};
-
-export default PopUp;
