@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { useSelector } from "react-redux";
 
 import InfoRoom from "./InfoRoom";
-import PopUp, { PopUpBlock } from "./PopUp";
+import { PopUpBlock } from "./PopUp";
 
 const InfoBlock = styled.button`
   background-color: white;

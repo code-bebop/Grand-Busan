@@ -104,12 +104,7 @@ const Rooms = React.forwardRef((props, ref) => {
     <RoomsBlock ref={ref}>
       <RoomsWrapper>
         <RoomsSlide>
-          <Swiper
-            onSlideChange={() => console.log("slide change")}
-            navigation
-            autoplay={true}
-            loop={true}
-          >
+          <Swiper navigation autoplay={true} loop={true}>
             <SwiperSlide>
               <img src={SlideImg1} alt={"슬라이드 이미지 1"} />
             </SwiperSlide>

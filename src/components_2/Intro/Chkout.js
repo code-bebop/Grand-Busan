@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import "react-dates/initialize";
 import styled, { css } from "styled-components";
-import DatePicker from "react-datepicker";
 import Button from "../Common/Button";
 import { PopUpBlock } from "./PopUp";
-
-import "./react-datepicker.css";
+import { DateRangePicker } from "react-dates";
+import "react-dates/lib/css/_datepicker.css";
+import moment from "moment";
+import "moment/locale/ko";
 
 const ChkoutBlock = styled.div`
   display: flex;
@@ -53,6 +55,24 @@ const CustomHeader = styled.div`
 `;
 
 const ChkoutPopUp = styled(PopUpBlock)`
+  display: flex;
+  align-items: center;
+  & .DateInput,
+  & .DateRangePickerInput_arrow {
+    display: none;
+  }
+  & .DateRangePicker_picker {
+    position: static;
+    border: none;
+    & .DayPicker__withBorder {
+      box-shadow: none;
+      border: none;
+    }
+    & .CalendarMonthGrid__horizontal {
+    }
+    & .CalendarMonthGrid_month__horizontal {
+    }
+  }
   ${(props) => {
     if (props.isPopUp === false) {
       return css`
@@ -64,8 +84,10 @@ const ChkoutPopUp = styled(PopUpBlock)`
 `;
 
 const Chkout = ({ isPopUp, setIsPopUp }) => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
+  moment.locale("ko");
+  const [startDate, setStartDate] = useState(moment());
+  const [endDate, setEndDate] = useState(moment());
+  const [focusedInput, setFocusedInput] = useState("startDate");
 
   return (
     <ChkoutBlock>
@@ -74,35 +96,30 @@ const Chkout = ({ isPopUp, setIsPopUp }) => {
         color={"white"}
       >
         <strong>Check In / Out</strong>
-        <ChkoutDate></ChkoutDate>
+        <ChkoutDate>
+          <span>{startDate.format("L")}</span>
+          <span>{!endDate ? startDate.format("L") : endDate.format("L")}</span>
+        </ChkoutDate>
         <span>1박</span>
       </Button>
       <ChkoutPopUp isPopUp={isPopUp.chkout}>
-        <DatePicker
-          selected={startDate}
+        <DateRangePicker
           startDate={startDate}
+          startDateId="your_unique_start_date_id"
           endDate={endDate}
-          inline
-          slectsRange
-          monthsShown={2}
-          shouldCloseOnSelect={false}
-          minDate={new Date()}
-          popperPlacement="top-end"
-          renderCustomHeader={({ decreaseMonth, date }) => {
-            return (
-              <CustomHeader>
-                <Button onClick={decreaseMonth} color={"white"}>
-                  {"<"}
-                </Button>
-                <span>
-                  {date.getFullYear()}.{date.getMonth() + 1}
-                </span>
-              </CustomHeader>
-            );
+          endDateId="your_unique_end_date_id"
+          onDatesChange={({ startDate, endDate }) => {
+            setStartDate(startDate);
+            setEndDate(endDate);
           }}
-          renderDayContents={(day, date) => {
-            return <span>{day}</span>;
+          focusedInput={focusedInput}
+          onFocusChange={(focusedInput) => {
+            if (!focusedInput) return;
+            setFocusedInput(focusedInput);
           }}
+          noBorder={true}
+          daySize={50}
+          transitionDuration={0}
         />
       </ChkoutPopUp>
     </ChkoutBlock>
